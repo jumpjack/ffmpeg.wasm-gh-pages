@@ -1,13 +1,32 @@
-name: gh-pages deploy
+name: Pages
 
 on:
   push:
     branches:
       - main
 
+  workflow_dispatch:
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build_site:
+
+  deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,7 +38,7 @@ jobs:
           cache: npm
 
       - name: Install deps
-        run: npm i
+        run: npm install
 
       - name: Download ffmpeg
         run: npm run download
@@ -29,19 +48,6 @@ jobs:
         with:
           path: 'public/'
 
-  deploy:
-    needs: build_site
-    runs-on: ubuntu-latest
-
-    permissions:
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
