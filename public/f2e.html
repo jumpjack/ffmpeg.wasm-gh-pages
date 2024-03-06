@@ -46,7 +46,7 @@ console.log("Filw written; start converting...");
         console.time('exec');
         await ffmpeg.exec(['-i', name, '-vf v360=fisheye:e',  'output.jpg']); //Execute ffmpeg command line 
         console.timeEnd('exec');
-console.log(Conversion completed. Putting output into web page");
+console.log("Conversion completed. Putting output into web page");
         message.innerHTML = 'Conversion complete';
         const data = await ffmpeg.readFile('output.jpg'); // Read output file from ffmpeg virtual filesystem
 console.log("DATA=",data);
