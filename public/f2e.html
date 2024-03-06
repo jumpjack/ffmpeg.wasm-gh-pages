@@ -17,9 +17,12 @@
   <body>
     <h3>Upload a fisheye image to convert to equirect</h3>
     <img src="" id="myimage"><br/>
+    <input type="text" id="txtFilter" name= "txtFilter" value='v360=fisheye:e:ih_fov=180:iv_fov=180'><br>
     <input type="file" id="uploader">
     <p id="message"></p>
     <script>
+    filterString = document.getElementById("txtFilter").value;
+
       const { fetchFile } = FFmpegUtil;
       const { FFmpeg } = FFmpegWASM;
       let ffmpeg = null;
@@ -39,17 +42,17 @@
           });
         }
         const { name } = files[0];
-console.log("Writing input file " + name + " to ffmpeg filesystem...");
+console.log("=== Writing input file " + name + " to ffmpeg filesystem...");
         await ffmpeg.writeFile(name, await fetchFile(files[0])); // Write file to ffmpeg virtual filesystem
-console.log("File written; start converting...");
+console.log("=== File written; start converting...");
         message.innerHTML = 'Start converting';
         console.time('exec');
-        await ffmpeg.exec(['-hide_banner', '-i', name, '-vf', 'v360=fisheye:e:ih_fov=180:iv_fov=180',  'output.jpg']); //Execute ffmpeg command line 
+        await ffmpeg.exec(['-hide_banner', '-i', name, '-filter_complex', filterString,  'output.jpg']); //Execute ffmpeg command line 
         console.timeEnd('exec');
-console.log("Conversion completed. Putting output into web page");
+console.log("=== Conversion completed. Putting output into web page");
         message.innerHTML = 'Conversion complete';
         const data = await ffmpeg.readFile('output.jpg'); // Read output file from ffmpeg virtual filesystem
-console.log("DATA=",data);
+console.log("=== DATA=",data);
         const imgOutput = document.getElementById('myimage');
         imgOutput.src = URL.createObjectURL(new Blob([data.buffer], { type: 'image/jpeg' })); // put output into html page
       }
