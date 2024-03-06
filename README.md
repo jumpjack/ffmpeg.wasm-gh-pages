@@ -6,7 +6,8 @@
 
 ## Downloads
 
-[https://unpkg.com/browse/@ffmpeg/ffmpeg@0.12.6/](https://unpkg.com/browse/@ffmpeg/ffmpeg@0.12.6/)
+- [https://unpkg.com/@ffmpeg/ffmpeg/](https://unpkg.com/@ffmpeg/ffmpeg/)
+- [https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg](https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg)
 
 ### Compressed
 
