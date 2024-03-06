@@ -1,5 +1,8 @@
 # Vanilla / Browser Examples
 
+- [Test 1](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/transcode.html)
+- [Test 2](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/index.html)
+
 ## Setup
 
 You need to download assets from npm before running the examples:
