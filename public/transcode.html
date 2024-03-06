@@ -4,10 +4,11 @@
 <!--    <script src="/ffmpeg.wasm-gh-pages/assets/ffmpeg/package/dist/umd/ffmpeg.js"></script>
     <script src="/ffmpeg.wasm-gh-pages/assets/util/package/dist/umd/index.js"></script>
 -->
-    https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/umd/ffmpeg.min.js
-      <script src=https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/umd/ffmpeg.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/esm/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.7/dist/umd/814.ffmpeg.js"></script>
+    
+<script src="https://unpkg.com/browse/@ffmpeg/ffmpeg@0.12.6/dist/umd/ffmpeg.js"></script>
+<script src="https://unpkg.com/browse/@ffmpeg/util@0.12.0/dist/umd/index.js"></script>
+
+
 
   </head>
   <body>
@@ -31,7 +32,7 @@
             message.innerHTML = `${progress * 100} %, time: ${time / 1000000} s`;
           });
           await ffmpeg.load({
-            coreURL: "../ffmpeg/umd/ffmpeg-core.js",
+            coreURL: "https://unpkg.com/browse/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js",
           });
         }
         const { name } = files[0];
