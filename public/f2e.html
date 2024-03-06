@@ -59,9 +59,9 @@ console.log("=== File written.");
 const transcode   = async () => { 
 console.log("====Processing  ", pippo);  
    message.innerHTML = 'Start converting';
-        console.time('exec');
+        //console.time('exec');
         await ffmpeg.exec(['-hide_banner', '-i', pippo, '-filter_complex', filterString,  'output.jpg']); //Execute ffmpeg command line 
-        console.timeEnd('exec');
+        //console.timeEnd('exec');
 console.log("=== Conversion completed. Putting output into web page");
         message.innerHTML = 'Conversion complete';
         const data = await ffmpeg.readFile('output.jpg'); // Read output file from ffmpeg virtual filesystem
