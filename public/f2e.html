@@ -32,7 +32,8 @@
       const { FFmpeg } = FFmpegWASM;
       let ffmpeg = null;
 
-      const setupFFmpeg = async ({ target: { files } }) => {
+      
+      const setupFFmpeg = async () => {
         const message = document.getElementById('message');
         if (ffmpeg === null) {
           ffmpeg = new FFmpeg();
@@ -45,9 +46,12 @@
           await ffmpeg.load({
             coreURL: "https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js",
           });
+          console.log("READY", ffmpeg);
         }
+      }
 
       
+function setName  async ({ target: { files } }) => {   
     const { name } = files[0];
 pippo = name;
         
@@ -69,8 +73,11 @@ console.log("=== DATA=",data);
         const imgOutput = document.getElementById('myimage');
         imgOutput.src = URL.createObjectURL(new Blob([data.buffer], { type: 'image/jpeg' })); // put output into html page
       }
+
+      setupFFmpeg();
+      
       const elm = document.getElementById('uploader');
-      elm.addEventListener('change', setupFFmpeg);
+      elm.addEventListener('change', setName);
       
       const btnStart = document.getElementById('btnStart');
       btnStart.addEventListener('click', transcode);
