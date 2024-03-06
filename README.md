@@ -6,6 +6,8 @@
 
 ## Downloads
 
+[https://unpkg.com/browse/@ffmpeg/ffmpeg@0.12.6/](https://unpkg.com/browse/@ffmpeg/ffmpeg@0.12.6/)
+
 ### Compressed
 
 - [FFmpeg](https://registry.npmjs.org/@ffmpeg/ffmpeg/-/ffmpeg-0.12.7.tgz) 
