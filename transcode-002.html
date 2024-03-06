@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./style.css">
+
+    <script>
+function getWorkerURL(e) {
+  const t = `importScripts( "${e}" );`;
+  return URL.createObjectURL(new Blob([t], { type: "text/javascript" }));
+}
+    </script>      
+<script src="../ffmpeg/umd/ffmpeg-0-12-6-patched.js"></script> <!-- Fixed 810.ffmpeg.js -->
+<script src="https://unpkg.com/@ffmpeg/util@0.12.0/dist/umd/index.js"></script>
+
+
+  </head>
+  <body>
+    <h3>Upload a video to transcode to mp4 (x264) and play!</h3>
+    <img id="output_img" ><br/>
+    <input type="file" id="uploader">
+    <p id="message"></p>
+    <script>
+      const { fetchFile } = FFmpegUtil;
+      const { FFmpeg } = FFmpegWASM;
+      let ffmpeg = null;
+
+      const transcode = async ({ target: { files } }) => {
+        const message = document.getElementById('message');
+        if (ffmpeg === null) {
+          ffmpeg = new FFmpeg();
+          ffmpeg.on("log", ({ message }) => {
+            console.log(message);
+          })
+          ffmpeg.on("progress", ({ progress, time }) => {
+            message.innerHTML = `${progress * 100} %, time: ${time / 1000000} s`;
+          });
+          await ffmpeg.load({
+            coreURL: "https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js",
+          });
+        }
+        const { name } = files[0];
+        await ffmpeg.writeFile(name, await fetchFile(files[0]));
+        message.innerHTML = 'Start transcoding';
+        console.time('exec');
+        await ffmpeg.exec(['-i', name,  'output.jpg']);
+        console.timeEnd('exec');
+        message.innerHTML = 'Complete transcoding';
+        const data = await ffmpeg.readFile('output.jpg');
+
+        const im = document.getElementById('output_img');
+        im.src = URL.createObjectURL(new Blob([data.buffer], { type: 'image/jpeg' }));
+      }
+      const elm = document.getElementById('uploader');
+      elm.addEventListener('change', transcode);
+    </script>
+  </body>
+</html>
