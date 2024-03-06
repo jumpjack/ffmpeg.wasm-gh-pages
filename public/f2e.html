@@ -21,6 +21,9 @@
     <input type="file" id="uploader"><br>
     <button id="btnStart" name="btnStart">Convert</button><br>
     <p id="message"></p>
+    <br>
+    FFmpeg online tester: <a href="https://ffmpeg.lav.io/">https://ffmpeg.lav.io/</a><br>
+    Example command line: <b></b>ffmpeg -i fisheye-mono (1).png -filter_complex "[0:v]v360[out_v]" -map "[out_v]" -map 0:a out.mp4</b><br>
     <script>
       let counter = 0;
     filterString = document.getElementById("txtFilter").value;
