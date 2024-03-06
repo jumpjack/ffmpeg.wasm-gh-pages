@@ -1,8 +1,8 @@
 # Vanilla / Browser Examples
 
 ## Tests
-- [Test 1](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/transcode.html)
-- [Test 2](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/index.html)
+- [Test 1](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/transcode.html) - video transcode
+- [Test 2](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/f2e.html) - fisheye to equirect
 
 ## Downloads
 
