@@ -4,8 +4,15 @@
 <!--    <script src="/ffmpeg.wasm-gh-pages/assets/ffmpeg/package/dist/umd/ffmpeg.js"></script>
     <script src="/ffmpeg.wasm-gh-pages/assets/util/package/dist/umd/index.js"></script>
 -->
-    
-<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.6/dist/umd/ffmpeg.js"></script>
+
+    <script>
+function getWorkerURL(e) {
+  const t = `importScripts( "${e}" );`;
+  return URL.createObjectURL(new Blob([t], { type: "text/javascript" }));
+}
+    </script>      
+<!--<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.6/dist/umd/ffmpeg.js"></script>-->
+<script src="../ffmpeg/umd/ffmpeg-0-12-6-patched.js"></script> <!-- Fixed 810.ffmpeg.js -->
 <script src="https://unpkg.com/@ffmpeg/util@0.12.0/dist/umd/index.js"></script>
 <!--<script src="https://unpkg.com/@ffmpeg/ffmpeg@0.12.6/dist/umd/814.ffmpeg.js"></script>-->
 
