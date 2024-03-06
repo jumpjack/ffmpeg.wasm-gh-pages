@@ -33,7 +33,7 @@
       let ffmpeg = null;
 
       
-      //const setupFFmpeg = async () => {
+      const setupFFmpeg = async () => {
         const message = document.getElementById('message');
         if (ffmpeg === null) {
           ffmpeg = new FFmpeg();
@@ -48,7 +48,7 @@
           });
           console.log("READY", ffmpeg);
         }
-     // }
+      }
 
       
 function setName  async ({ target: { files } }) => {   
