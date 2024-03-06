@@ -16,11 +16,31 @@
 
 ### Upacked
 
-- [FFmpeg]() 
-- [Utils]() 
+- [FFmpeg](https://github.com/jumpjack/ffmpeg.wasm-gh-pages/blob/main/ffmpeg/umd/ffmpeg-0-12-6-patched.js)  (patched to fix error of 814.ffmpeg.js file not f ound
+- [Utils](https://unpkg.com/@ffmpeg/util@0.12.0/dist/umd/index.js) 
 - FFMpeg Core:
-    - [Single thread]()
-    - [Multithread]()
+    - [Single thread](https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js)
+    - [Multithread](https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/umd/ffmpeg-core-mt.js)
+
+## Workaround to overcome missing 814.ffmpeg.js
+
+Source: [link](https://github.com/ffmpegwasm/ffmpeg.wasm/issues/694)
+
+In **ffmpeg/package/dist/umd/ffmpeg.js** instead of:
+
+    new Worker(new URL(e.p + e.u(814), e.b),{ type: void 0 })
+    
+use:
+
+    new Worker(getWorkerURL(new URL(e.p + e.u(814), e.b)),{ type: void 0 })
+
+and getWorkerURL function:
+
+    function getWorkerURL(e) {
+        const t = `importScripts( "${e}" );`;
+        return URL.createObjectURL(new Blob([t], { type: "text/javascript" }));
+    }
+
 
 -------------
 
