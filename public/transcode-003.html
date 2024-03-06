@@ -14,7 +14,7 @@ function getWorkerURL(e) {
 
   </head>
   <body>
-    <h3>Upload a video to transcode to mp4 (x264) and play!</h3>
+    <h2>Test</h2>
     <img id="output_img" ><br/>
     <input type="file" id="uploader">
     <p id="message"></p>
@@ -34,7 +34,7 @@ function getWorkerURL(e) {
             message.innerHTML = `${progress * 100} %, time: ${time / 1000000} s`;
           });
           await ffmpeg.load({
-            coreURL: "https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js",
+            coreURL: "https://unpkg.com/@ffmpeg/core@0.11.0/dist/umd/ffmpeg-core.js",
           });
         }
         const { name } = files[0];
@@ -47,15 +47,15 @@ function getWorkerURL(e) {
         message.innerHTML = 'Start transcoding';
         
        try {
-          //await ffmpeg.exec(['-i', name, '-vf', 'v360=fisheye:e:ih_fov=180:iv_fov=180',  'output.jpg']);
-          await ffmpeg.exec('-i img1.png -filter_complex [0:v]zoompan=z=\'if(lte(zoom,1.0),1.1,max(1.001,zoom-0.0015))\':d=125,fade=t=out:st=4:d=1[v1] -map [v1] -c:v libx264 -pix_fmt yuv420p out.mp4');
+          await ffmpeg.exec(['-i', name, '-vf', 'v360=fisheye:e:ih_fov=180:iv_fov=180',  'output.png']);
+          //await ffmpeg.exec('-i img1.png -filter_complex [0:v]zoompan=z=\'if(lte(zoom,1.0),1.1,max(1.001,zoom-0.0015))\':d=125,fade=t=out:st=4:d=1[v1] -map [v1] -c:v libx264 -pix_fmt yuv420p out.mp4');
         } catch (e) {
             console.log("Errore in exec ", e);
         }        
         message.innerHTML = 'Complete transcoding';
         
        try {
-           const data = await ffmpeg.readFile('output.jpg');
+           const data = await ffmpeg.readFile('output.png');
         } catch (e) {
             console.log("Errore in readFile ", e);
         }        
