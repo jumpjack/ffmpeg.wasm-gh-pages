@@ -25,7 +25,8 @@
     FFmpeg online tester: <a href="https://ffmpeg.lav.io/">https://ffmpeg.lav.io/</a><br>
     Example command line: <b></b>ffmpeg -i fisheye-mono (1).png -filter_complex "[0:v]v360[out_v]" -map "[out_v]" -map 0:a out.mp4</b><br>
     <script>
-    filterString = document.getElementById("txtFilter").value;
+      var filterString = document.getElementById("txtFilter").value;
+      var pippo = "dummy";
 
       const { fetchFile } = FFmpegUtil;
       const { FFmpeg } = FFmpegWASM;
@@ -48,17 +49,18 @@
 
       
     const { name } = files[0];
-
+pippo = name;
+        
 console.log("=== Writing input file " + name + " to ffmpeg filesystem...");
           await ffmpeg.writeFile(name, await fetchFile(files[0])); // Write file to ffmpeg virtual filesystem
 console.log("=== File written.");
       }
 
-const transcode   = async ({ target: { name } }) => { 
-console.log("====Processing  ", name);  
+const transcode   = async () => { 
+console.log("====Processing  ", pippo);  
    message.innerHTML = 'Start converting';
         console.time('exec');
-        await ffmpeg.exec(['-hide_banner', '-i', name, '-filter_complex', filterString,  'output.jpg']); //Execute ffmpeg command line 
+        await ffmpeg.exec(['-hide_banner', '-i', pippo, '-filter_complex', filterString,  'output.jpg']); //Execute ffmpeg command line 
         console.timeEnd('exec');
 console.log("=== Conversion completed. Putting output into web page");
         message.innerHTML = 'Conversion complete';
