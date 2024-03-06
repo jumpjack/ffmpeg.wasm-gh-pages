@@ -18,7 +18,8 @@
     <h3>Upload a fisheye image to convert to equirect</h3>
     <img src="" id="myimage"><br/>
     <input type="text" id="txtFilter" name= "txtFilter" value='v360=fisheye:e:ih_fov=180:iv_fov=180'><br>
-    <input type="file" id="uploader">
+    <input type="file" id="uploader"><br>
+    <button id="btnStart" name="btnStart">Convert</button>button><br>
     <p id="message"></p>
     <script>
     filterString = document.getElementById("txtFilter").value;
@@ -58,6 +59,9 @@ console.log("=== DATA=",data);
       }
       const elm = document.getElementById('uploader');
       elm.addEventListener('change', transcode);
+      
+      const btnStart = document.getElementById('btnStart');
+      btnStart.addEventListener('click', transcode);
     </script>
   </body>
 </html>
