@@ -50,7 +50,7 @@ counter++;
         }
 // if (name === "") {
 console.log(counter, name);        
-        { name } = files[0];
+  const  { name } = files[0];
 console.log("=== Writing input file " + name + " to ffmpeg filesystem...");
           await ffmpeg.writeFile(name, await fetchFile(files[0])); // Write file to ffmpeg virtual filesystem
 console.log("=== File written; start converting...");
