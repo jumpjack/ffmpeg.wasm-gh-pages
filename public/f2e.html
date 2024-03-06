@@ -63,15 +63,13 @@ console.log("=== File written.");
 const transcode   = async () => { 
 console.log("====Processing  ", pippo);  
    message.innerHTML = 'Start converting';
-        //console.time('exec');
-        await ffmpeg.exec(['-hide_banner', '-i', pippo, '-filter_complex', filterString,  'output.jpg']); //Execute ffmpeg command line 
-        //console.timeEnd('exec');
+        await ffmpeg.exec(['-hide_banner', '-i', pippo, '-filter_complex', filterString,  'output.png']); //Execute ffmpeg command line 
 console.log("=== Conversion completed. Putting output into web page");
         message.innerHTML = 'Conversion complete';
-        const data = await ffmpeg.readFile('output.jpg'); // Read output file from ffmpeg virtual filesystem
+        const data = await ffmpeg.readFile('output.png'); // Read output file from ffmpeg virtual filesystem
 console.log("=== DATA=",data);
         const imgOutput = document.getElementById('myimage');
-        imgOutput.src = URL.createObjectURL(new Blob([data.buffer], { type: 'image/jpeg' })); // put output into html page
+        imgOutput.src = URL.createObjectURL(new Blob([data.buffer], { type: 'image/png' })); // put output into html page
       }
 
       setupFFmpeg();
