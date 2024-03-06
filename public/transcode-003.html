@@ -9,7 +9,7 @@ function getWorkerURL(e) {
 }
     </script>      
 <!--<script src="../ffmpeg/umd/ffmpeg-0-12-6-patched.js"></script> --> <!-- Fixed 810.ffmpeg.js -->
-<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.0/src/index.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.0/dist/umd/ffmpeg.min.js"></script>
 <script src="https://unpkg.com/@ffmpeg/util@0.12.0/dist/umd/index.js"></script>
 
 
@@ -36,7 +36,7 @@ function getWorkerURL(e) {
           });
           await ffmpeg.load({
             //coreURL: "https://unpkg.com/@ffmpeg/core@0.11.0/dist/umd/ffmpeg-core.js",
-           coreURL: "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.11.0/dist/ffmpeg-core.min.js"
+           coreURL: "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.0/dist/esm/ffmpeg-core.min.js"
           });
         }
         const { name } = files[0];
