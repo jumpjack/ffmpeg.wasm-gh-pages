@@ -1,7 +1,28 @@
 # Vanilla / Browser Examples
 
+## Tests
 - [Test 1](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/transcode.html)
 - [Test 2](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/index.html)
+
+## Downloads
+
+### Compressed
+
+- [FFmpeg](https://registry.npmjs.org/@ffmpeg/ffmpeg/-/ffmpeg-0.12.7.tgz) 
+- [Utils](https://registry.npmjs.org/@ffmpeg/util/-/util-0.12.0.tgz) 
+- FFMpeg Core:
+    - [Single thread](https://registry.npmjs.org/@ffmpeg/core/-/core-0.12.5.tgz)
+    - [Multithread](https://registry.npmjs.org/@ffmpeg/core-mt/-/core-mt-0.12.5.tgz)
+
+### Upacked
+
+- [FFmpeg]() 
+- [Utils]() 
+- FFMpeg Core:
+    - [Single thread]()
+    - [Multithread]()
+
+-------------
 
 ## Setup
 
