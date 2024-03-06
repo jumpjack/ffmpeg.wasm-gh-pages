@@ -25,16 +25,13 @@
     FFmpeg online tester: <a href="https://ffmpeg.lav.io/">https://ffmpeg.lav.io/</a><br>
     Example command line: <b></b>ffmpeg -i fisheye-mono (1).png -filter_complex "[0:v]v360[out_v]" -map "[out_v]" -map 0:a out.mp4</b><br>
     <script>
-      let counter = 0;
     filterString = document.getElementById("txtFilter").value;
-      let name = null;
 
       const { fetchFile } = FFmpegUtil;
       const { FFmpeg } = FFmpegWASM;
       let ffmpeg = null;
 
-      const transcode = async ({ target: { files } }) => {
-counter++;
+      const setupFFmpeg = async ({ target: { files } }) => {
         const message = document.getElementById('message');
         if (ffmpeg === null) {
           ffmpeg = new FFmpeg();
@@ -49,17 +46,17 @@ counter++;
           });
         }
 
-        
-if (typeof name === 'undefined' || name === null) {
+      
     const { name } = files[0];
 
 console.log("=== Writing input file " + name + " to ffmpeg filesystem...");
           await ffmpeg.writeFile(name, await fetchFile(files[0])); // Write file to ffmpeg virtual filesystem
-console.log("=== File written; start converting...");
-} else {
-// reprocess previous file
-}
-        message.innerHTML = 'Start converting';
+console.log("=== File written.");
+      }
+
+const transcode   = async ({ target: { name } }) => { 
+console.log("====Processing  ", name);  
+   message.innerHTML = 'Start converting';
         console.time('exec');
         await ffmpeg.exec(['-hide_banner', '-i', name, '-filter_complex', filterString,  'output.jpg']); //Execute ffmpeg command line 
         console.timeEnd('exec');
@@ -71,7 +68,7 @@ console.log("=== DATA=",data);
         imgOutput.src = URL.createObjectURL(new Blob([data.buffer], { type: 'image/jpeg' })); // put output into html page
       }
       const elm = document.getElementById('uploader');
-      elm.addEventListener('change', transcode);
+      elm.addEventListener('change', setupFFmpeg);
       
       const btnStart = document.getElementById('btnStart');
       btnStart.addEventListener('click', transcode);
