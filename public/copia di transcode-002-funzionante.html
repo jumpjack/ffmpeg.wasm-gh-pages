@@ -19,7 +19,7 @@ function getWorkerURL(e) {
     <img id="output_img" src=""><br><br>
     <input type="file" id="uploader"><br>
       <input type="text" id="ffmpegString" name="ffmpegString" value = "v360=fisheye:e:ih_fov=180:iv_fov=180" size=50><br>
-    <p id="message">Conversion complete!</p>
+    <p id="message">-</p>
     <script>
       const { fetchFile } = FFmpegUtil;
       const { FFmpeg } = FFmpegWASM;
@@ -43,7 +43,7 @@ function getWorkerURL(e) {
         await ffmpeg.writeFile(name, await fetchFile(files[0]));
         message.innerHTML = 'Converting...';
         await ffmpeg.exec(['-i', name, '-vf', 'v360=fisheye:e:ih_fov=180:iv_fov=180',  'output.jpg']);
-        message.innerHTML = 'Complete transcoding';
+        message.innerHTML = 'Conversion complete!';
         const data = await ffmpeg.readFile('output.jpg');
 
         const im = document.getElementById('output_img');
