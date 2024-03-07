@@ -3,6 +3,7 @@
 ## Tests
 - [Test 1](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/transcode.html) - video transcode
 - [Test 2](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/f2e.html) - fisheye to equirect
+- [Test 3](https://jumpjack.github.io/ffmpeg.wasm-gh-pages/public/copia di transcode-002-funzionante.html)
 
 ## Downloads
 
