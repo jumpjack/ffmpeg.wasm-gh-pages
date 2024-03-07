@@ -16,8 +16,9 @@ function getWorkerURL(e) {
   </head>
   <body>
     <h3>Fisheye to equirectangular</h3>
-    <img id="output_img" src=""><br>
-    <input type="file" id="uploader">
+    <img id="output_img" src=""><br><br>
+    <input type="file" id="uploader"><br>
+      <input type="text" id="ffmpegString" name="ffmpegString" value = "v360=fisheye:e:ih_fov=180:iv_fov=180" size=50><br>
     <p id="message">Conversion complete!</p>
     <script>
       const { fetchFile } = FFmpegUtil;
